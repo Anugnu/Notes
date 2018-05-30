@@ -1,0 +1,21 @@
+; -- start job file --
+
+
+[global]
+filename=/dev/sda:/dev/sdb:/dev/sdc:/dev/sdd
+ioengine=libaio
+iodepth=16
+rw=randread
+bs=4k
+direct=1
+numjobs=16
+runtime=1080
+stonewall
+refill_buffers
+norandommap
+group_reporting
+output-format=terse
+status-interval=1
+
+
+; -- end of job file --

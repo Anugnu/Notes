@@ -1,0 +1,68 @@
+yum update -y
+
+yum install python -y
+
+yum groupinstall 'Development Tools' -y
+
+yum install qt-devel -y
+
+wget https://sourceforge.net/projects/pyqt/files/sip/sip-4.19.8/sip-4.19.8.tar.gz
+
+tar xvfz sip-4.19.8
+
+python configure.py
+
+make
+
+make install
+
+wget https://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.10.1/PyQt5_gpl-5.10.1.tar.gz
+
+tar xvfz PyQt5_gpl-5.10.1.tar.gz
+
+
+
+wget http://www.pyqtgraph.org/downloads/0.10.0/pyqtgraph-0.10.0.tar.gz
+
+tar xvfz pyqtgraph-0.10.0.tar.gz
+
+cd pyqtgraph-0.10.0
+
+python setup.py install
+
+yum install python-devel.x86_64 -y
+
+wget https://files.pythonhosted.org/packages/79/9d/dea8c5181cdb77d32e20a44dd5346b0e4bac23c4858f2f66ad64bbcf4de8/Cython-0.28.2.tar.gz
+
+cd Cython-0.28.2
+
+python setup.py install
+
+yum install git -y
+
+git clone https://github.com/numpy/numpy.git
+
+python setup.py build
+
+python setup.py install
+
+wget https://github.com/axboe/fio/archive/fio-3.6.tar.gz
+
+tar xvfz fio-3.6.tar.gz
+
+cd fio-fio-3.6/
+
+./configure
+
+make
+
+make install
+
+git clone https://github.com/intel/fiovisualizer.git
+
+cd /fiovisualizer
+
+chmod 755 fio_visualizer.py
+
+./fio_visualizer.py
+

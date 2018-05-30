@@ -1,0 +1,52 @@
+Flexible I/O tester by JENS AXBOE
+
+LEAST LATENCY
+fio --name=randread --filename=/dev/sda:/dev/sdb:/dev/sdc:/dev/sdd --ioengine=libaio --iodepth=8 --rw=randread --bs=4k --direct=1 --numjobs=8 --runtime=640 --stonewall --refill_buffers --norandommap --group_reporting --output-format=json --output=fiotest_json --status-interval=2 --eta-newline=2
+
+HIGHEST READ IOPS
+fio --name=randread --filename=/dev/sda:/dev/sdb:/dev/sdc:/dev/sdd --ioengine=libaio --iodepth=16 --rw=randread --bs=4k --direct=1 --numjobs=24 --runtime=640 --stonewall --refill_buffers --norandommap --group_reporting --output-format=json --output=fiotest_json --status-interval=2 --eta-newline=2
+
+MODERATE
+fio --name=randread --filename=/dev/sda:/dev/sdb:/dev/sdc:/dev/sdd --ioengine=libaio --iodepth=16 --rw=randread --bs=4k --direct=1 --numjobs=16 --runtime=640 --stonewall --refill_buffers --norandommap --group_reporting --output-format=terse --output=fiotest.txt --status-interval=2 --eta-newline=2
+
+
+tail -f fio123 | awk -F';' '{print $8 "|" $16 "|" $34}'
+
+7	bandwidth
+8	IOps
+16	clat(mean)
+34	clat(99.99%)
+89	cpu(system)
+
+
+options:
+--name=file_name_for_generating_loadfiles
+--filename=pathof_disk_tobe_tested1:pathof_disk_tobe_tested2:pathof_disk_tobe_tested3
+--ioengine=libaio
+--readonly	(for only reads to be done)
+--eta-interval=5sec
+--size=512M
+--cpuclock-test
+--directory=/cassandra_data
+--output-format=normal/terse/json/json+
+--output=fiotest.txt
+--stonewall
+--rwmixread=70
+--rwmixwrite=30
+--refill_buffers
+If this option is given, fio will refill the I/O buffers on every submit. Only makes sense if zero_buffers isn’t
+specified, naturally. Defaults to being unset i.e., the buffer is only filled at init time and the data in it is reused
+when possible but if any of verify, buffer_compress_percentage or dedupe_percentage are enabled then refill_buffers is also automatically enabled.
+
+--norandommap
+--output-format=terse
+
+
+
+
+OUTPUT Elements explained:
+
+Slat - submission latency (how long did it take to submit that IO to the kernel for processing).
+Clat - completion latency (time taken to complete that IO after submitting).
+lat - total time taken to submit and complete an IO.
+

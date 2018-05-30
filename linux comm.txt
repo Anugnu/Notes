@@ -1,0 +1,179 @@
+ipconfig - ifconfig
+
+nmcli d - to check network
+
+nmtui - network settings
+
+systemctl restart network
+
+useradd "name" "directory path"
+
+-h help
+
+-C copy
+
+-M 
+
+-s bin/nologin - login without password
+
+chown "user" "dir path" - 
+
+chgrp "group name" "dir path" -
+
+chmod r g+rwx "file path" -
+
+su "username" - switch user
+
+vi for vi editor; ESC "i" for insert;
+	ESC ":wq" for write and quit, use "!" to say important
+find / -name filename
+
+rm {file-name} - remove file
+
+ssh root@ipaddress - to connect to another vm
+
+hostnamectl set-hostname younameit - changing host name.
+
+exec bash - to see that change
+
+sestatus- selinux status
+
+sudo tail -100 /var/log/ - to check logs.
+
+sudo systemctl stop firewalld - stop the firewall.
+
+useradd username	default method for adding user
+
+useradd -m username	user with home directory
+
+passwd username		adding password to user
+
+useradd username -p password	single line creation
+
+groupadd groupname	default method for adding group
+
+usermod -aG groupname username		adding user to group
+
+grep groupname /etc/group		to know users in that group
+
+man useradd/groupadd/usermod/members	more about them.
+
+export PATH=/yourpath/bin:$PATH
+
+printenv 	for checking environmental varaiables.
+
+ps -ef | grep mongod		to check running processes.
+
+sudo kill -9 PID		to kill that process.
+
+sudo tail -f /var/log/mongodb/mongod.log - check logs
+
+pwd to print the current path
+
+-vvv for clear verbose
+
+tree	for flow chart of folders.
+
+yum whatprovides pathofelement	to find which package will provide that service.
+
+yum provides pathofelement	to find which package will provide that service.
+
+semanage port -a -t mongod_port_t -p tcp 27017	to open 27017 tcp port
+
+more /proc/partitions - to check size of drives
+
+top	-To check ram and cpu usage.
+
+vi ~/.bashrc	-To add envi variables for that user.
+
+sync; echo 1 > /proc/sys/vm/drop_caches	-To clear cache
+
+echo 3 > /proc/sys/vm/drop_caches && swapoff -a && swapon -a
+
+free -m		To check the memory cache used
+
+Logical Volume
+#to check drives and physical volumes
+more /proc/partitions or fdisk -l | grep /dev
+pvdisplay		(to check any physical volumes already exist)
+#change with your drive names below.
+pvcreate /dev/sda /dev/sdb /dev/sdc /dev/sdd
+or
+pvcreate /dev/sda[bcd..] if you have similar names.
+#give drive name and change with your drive names
+vgcreate sam-vg /dev/sda /dev/sdb /dev/sdc /dev/sdd 
+#calculate total space in GB, assign to logical volume
+lvcreate -L 3490G -n sam-lv(lv_name) sam-vg(vg_name)
+lvcreate --extents 100%FREE --name lv_name vg_name
+lvcreate -i3(stripe_number) -I64(bitesize) -L4G(space_in_gb) -n striped_logical_volume striped_vol_group
+#assigns ext4 filetype to lvm
+mkfs.ext4 /dev/hk6/hk6-lvdisk
+#mount lv to any folder you created or already exist
+mount /dev/sam-vg/sam-lv(your_volume_path) /path_of_folder_to_mount_on
+#to check the disk has been created
+df -h
+#to unmount the lv
+umount /path_of_folder_you_mounted
+#remove lv created
+
+
+
+Cassandra on Kubes:
+kubectl run givename --image=urdockerimage --port=xxxx --replicas=num --labels=key=value
+
+kubectl get services/nodes/pods
+
+kubectl logs pod_name
+
+kubectl describe pods pod_name
+
+kubectl exec -it pod_name bash
+
+
+kubectl port-forward pod_name 9042:9042
+
+kubectl get deployment
+
+kubectl delete deployments pod_name
+
+
+
+
+
+
+Docker Commands:
+See version of docker
+docker version
+
+list all containers running
+sudo docker ps
+
+list all containers with size
+sudo docker ps -s
+
+list volumes and size
+docker system df -v
+
+To run a new instance
+docker run --name test -d cassandra:2.2.12 -p 7000:7000 -p 7001:7001 -p 7199:7199 -p 9042:9042 -p 9160:9160
+
+To run docker through an interactive shell
+sudo docker run --name name-your-cassandra -it container /bin/bash
+
+container shell access
+docker exec -it your-cassandra bash
+
+get IP of the container
+docker inspect <InstanceID>
+
+stop a container
+sudo docker stop containerID/containerName
+
+delete a container
+sudo docker kill <instanceID/Name>
+
+delete volume of a container
+docker volume rm [OPTIONS] VOLUME [VOLUME...]
+
+
+
