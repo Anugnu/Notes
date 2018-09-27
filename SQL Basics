@@ -1,0 +1,47 @@
+SELECT - extracts data from a database
+UPDATE - updates data in a database
+DELETE - deletes data from a database
+INSERT INTO - inserts new data into a database
+CREATE DATABASE - creates a new database
+ALTER DATABASE - modifies a database
+CREATE TABLE - creates a new table
+ALTER TABLE - modifies a table
+DROP TABLE - deletes a table
+CREATE INDEX - creates an index (search key)
+DROP INDEX - deletes an index
+DISTINCT - for all the distinct values only
+WHERE - to raise a condition
+ORDER BY - to sort in asc/desc order.
+LIMIT - to limit the number of records to display.
+COUNT(col_name) / AVG(col_name) / SUM(col_name) - to count total rows matching the condition / avg/sum of rows if they are numeric.
+LIKE - type of condition where the values similar/alike as given condition.
+BETWEEN - selects in give range inclusive of given values.
+
+SELECT * FROM table_name;																results all the values.
+SELECT DISTINCT FROM table_name;  														results all the distinct values only.
+SELECT DISTINCT coloumn_name FROM table_name; 											results all the distinct values in coloumn only.
+SELECT * FROM table_name WHERE condition; results values satisfying that condition.		AND/OR/NOT operators are also used.
+SELECT * FROM table_name ORDER BY coloumn DESC;											desc order by country. without mentioning desc, it is Asc.
+SELECT * FROM table_name ORDER BY coloumn1 ASC, coloumn2 DESC;							Asc of coloumn1, then desc of coloumn2 within.
+INSERT INTO table_name (col1,col2,col3) VALUES (val1,val2,val3);						why can't we add in rows.
+UPDATE table_name SET col1=val1, col2=val2, col3=val3 WHERE condition					updates values using set command with where condition.
+DELETE FROM table_name WHERE col2=val;													Deletes that row.
+SELECT coloumns/* FROM table_name WHERE condition LIMIT number;							sets the limit for output count.
+SELECT * FROM table_name WHERE condition LIKE 'a%'/'_a%';								displays elements starts with 'a'/ second letter is 'a'.
+SELECT * FROM Customers WHERE Country IN (SELECT Country FROM Suppliers);				selects all customers that are same countries as the suppliers.
+
+
+
+
+MY EXAMPLE:-
+CREATE TABLE fav_items (id INT, name VARCHAR(20), quantity INT, rating REAL);
+INSERT INTO fav_items(id,name,quantity,rating) 
+VALUES ('1','veggies','1','4'),
+('2','Coco Water','12','4.2'),
+('3','Cake Rusk','15','4.4'),
+('4','BlueBunny-BananaSplit','1','4.4'),
+('5','DairyMilk','1','4.6'),
+('6','Cake Rusk','15','4.4');
+SELECT * FROM fav_items WHERE rating > '4' OR '3.99' ORDER BY rating DESC;
+UPDATE fav_items
+SET name = 'Hash Browns', quantity = 10, rating = 3.9 WHERE id = 6 ;
