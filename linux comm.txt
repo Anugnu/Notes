@@ -52,7 +52,15 @@ useradd username -p password	single line creation
 
 groupadd groupname	default method for adding group
 
+groupmod 
+
+groupdel groupname	deleting group
+
+gpasswd groupname	it will prompt for passwd
+
 usermod -aG groupname username		adding user to group
+
+userdel username	deleting a user
 
 grep groupname /etc/group		to know users in that group
 
@@ -115,6 +123,14 @@ df -h
 #to unmount the lv
 umount /path_of_folder_you_mounted
 #remove lv created
+#repair ext file system
+init 1			to take system down to runlevel 1
+umount /dev/sdxx	removes mount
+fsck -t extx /dev/sdxx	specify ext filesystem
+fsck -y /dev/sdxx	repair ext filesystem
+fsck -N /dev/sda3	don't execute, just show what could be done.
+mount /dev/sdxx /path	mount it back
+init 3			system runlevel 3.
 
 
 
@@ -142,20 +158,25 @@ kubectl delete deployments pod_name
 
 
 Docker Commands:
+list all docker commands
+docker	or docker container --help
+
 See version of docker
-docker version
+docker version/--version/info
 
 list all containers running
-sudo docker ps
+sudo docker ps 
+sudo docker ps -s	with size
 
-list all containers with size
-sudo docker ps -s
+list docker images/containers:
+docker image ls
+docker container ls
 
 list volumes and size
 docker system df -v
 
 To run a new instance
-docker run --name test -d cassandra:2.2.12 -p 7000:7000 -p 7001:7001 -p 7199:7199 -p 9042:9042 -p 9160:9160
+docker run --name instance_name -d cassandra:2.2.12 -p 7000:7000 -p 7001:7001 -p 7199:7199 -p 9042:9042 -p 9160:9160
 
 To run docker through an interactive shell
 sudo docker run --name name-your-cassandra -it container /bin/bash
@@ -174,6 +195,3 @@ sudo docker kill <instanceID/Name>
 
 delete volume of a container
 docker volume rm [OPTIONS] VOLUME [VOLUME...]
-
-
-
