@@ -1,0 +1,12 @@
+Cloud Computing
+IAAS- Infrastructure as a service.
+SAAS- Software as a service.
+PAAS- Platform as a service.
+
+Security always is an issue, if you are in cloud storage, as someone physically present at server can stole any data by using jumpers to skip the security terms
+Or the web host themselves have our data or services we use are storing their data at that web host, which can be used / shared or sold for marketing requirements for other companies.
+
+Latency will also come in play when it comes to cloud storage, where the servers are at different geographical location and we are accessing them from different location, so it will take little more time than the servers we place physically in our office.
+
+Auto Scaling is the good option to have when we can’t predict No. of users at particular period, where it can adjust RAM or CPU as required.
+Continue monitoring or getting usage database such as No. of users, CPU usage, RAM usage will help in increasing and reducing your server & storage requirement.
